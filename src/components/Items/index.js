@@ -24,14 +24,12 @@ const Items = props => {
           <img alt="restaurant" className="imgUrl" src={imageUrl} />
         </div>
         <div className="cont1">
-          <h1 testid="restaurant-item" className="name">
-            {name}
-          </h1>
+          <h1 className="name">{name}</h1>
           <p className="cui">{cuisine}</p>
           <div className="con">
             <BsFillStarFill className="star" />
             <p className="rating">{rating}</p>
-            <p className="review">({totalReviews} ratings)</p>
+            <h1 className="review">({totalReviews} ratings)</h1>
           </div>
         </div>
       </li>

@@ -80,13 +80,23 @@ class CartData extends Component {
     return (
       <li className="cartList">
         <img className="imgUrl imgurlC" src={imageUrl} />
-        <p className="box">{name}</p>
+        <h1 className="box">{name}</h1>
         <div className="cartBut">
-          <button onClick={this.onDecrement} className="minus" type="button">
+          <button
+            testid="decrement-quantity"
+            onClick={this.onDecrement}
+            className="minus"
+            type="button"
+          >
             -
           </button>
           <div>{countE}</div>
-          <button onClick={this.onIncrement} className="plus" type="button">
+          <button
+            testid="increment-quantity"
+            onClick={this.onIncrement}
+            className="plus"
+            type="button"
+          >
             +
           </button>
         </div>

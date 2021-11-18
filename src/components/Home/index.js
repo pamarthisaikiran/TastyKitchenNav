@@ -43,12 +43,12 @@ class Home extends Component {
     productsList: [],
     activePage: 1,
     searchInput: '',
-    selectedSortByValue: sortByOptions[0].value,
+    selectedSortByValue: sortByOptions[1].value,
   }
 
   componentDidMount() {
-    this.renderProducts()
     this.getCarosalImgs()
+    this.renderProducts()
   }
 
   OnIncrement = () => {

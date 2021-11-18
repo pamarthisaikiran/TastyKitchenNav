@@ -85,7 +85,7 @@ class Cart extends Component {
     return (
       <div>
         <Header />
-        <div className="cart-card">
+        <div testid="cartItem" className="cart-card">
           <div className="ul-all">
             <ul>
               <li className="list">
@@ -105,7 +105,7 @@ class Cart extends Component {
             </ul>
             <hr className="hr" />
             <div className="gtotal">
-              <p className="order">Order Total:</p>
+              <h1 className="order">Order Total:</h1>
               <div>
                 <p className="total">₹ {gTotal}.00</p>
                 <button onClick={this.onPlaceOrder} className="porder">
@@ -137,10 +137,11 @@ class Cart extends Component {
           <div className="emp-card">
             <div className="emp-cart">
               <img
+                alt="empty cart"
                 className="emp-img"
                 src="https://res.cloudinary.com/ddbhluguf/image/upload/v1636779896/Screenshot_407_wfzfp5.png"
               />
-              <h1 className="emp-head">No Orders Yet!</h1>
+              <h1 className="emp-head">No Order Yet!</h1>
               <p className="emp-para">
                 Your cart is empty. Add something from the menu.
               </p>
@@ -173,7 +174,7 @@ class Cart extends Component {
               />
               <h1 className="plc-head">Payment Successful</h1>
               <p className="plc-para">
-                Thank you for ordering.Your payment is successfully completed.
+                Thank you for ordering Your payment is successfully completed.
               </p>
               <Link to="/">
                 <button className="plc-button">Go To Home Page</button>
