@@ -120,6 +120,10 @@ class Cart extends Component {
     )
   }
 
+  orderNow = () => {
+    localStorage.removeItem('cartData')
+  }
+
   renderReuestedFormat = () => {
     const {parsedDataState} = this.state
     let dataOfCart
@@ -141,7 +145,9 @@ class Cart extends Component {
                 Your cart is empty. Add something from the menu.
               </p>
               <Link to="/">
-                <button className="emp-button">Order Now</button>
+                <button onClick={this.orderNow} className="emp-button">
+                  Order Now
+                </button>
               </Link>
             </div>
           </div>

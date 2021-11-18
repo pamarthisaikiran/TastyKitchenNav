@@ -47,8 +47,8 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.getCarosalImgs()
     this.renderProducts()
+    this.getCarosalImgs()
   }
 
   OnIncrement = () => {
@@ -81,6 +81,9 @@ class Home extends Component {
   })
 
   getCarosalImgs = async () => {
+    this.setState({
+      apiStatus: apiStatusConstants.inProgress,
+    })
     const jwtToken = Cookies.get('jwt_token')
 
     const options = {
@@ -103,6 +106,11 @@ class Home extends Component {
       }))
       this.setState({
         carosalData: imgData,
+        apiStatus: apiStatusConstants.success,
+      })
+    } else {
+      this.setState({
+        apiStatus: apiStatusConstants.failure,
       })
     }
   }
@@ -125,26 +133,28 @@ class Home extends Component {
     }
 
     return (
-      <div className="container">
-        <Slider {...settings}>
-          <div>
-            <img alt="offer" className="imgC" src={one.imageUrl} />
-          </div>
-          <div>
-            <img alt="offer" className="imgC" src={two.imageUrl} />
-          </div>
-          <div>
-            <img alt="offer" className="imgC" src={three.imageUrl} />
-          </div>
-          <div>
-            <img alt="offer" className="imgC" src={four.imageUrl} />
-          </div>
-        </Slider>
-      </div>
+      <>
+        <div className="contain">
+          <Slider {...settings}>
+            <div>
+              <img alt="offer" className="imgC" src={one.imageUrl} />
+            </div>
+            <div>
+              <img alt="offer" className="imgC" src={two.imageUrl} />
+            </div>
+            <div>
+              <img alt="offer" className="imgC" src={three.imageUrl} />
+            </div>
+            <div>
+              <img alt="offer" className="imgC" src={four.imageUrl} />
+            </div>
+          </Slider>
+        </div>
+      </>
     )
   }
 
-  renderLoadingView = () => (
+  renderLoadingViewCau = () => (
     <div className="loader-container" testid="restaurants-offers-loader">
       <Loader type="TailSpin" color="#f7931e" height="50" width="50" />
     </div>
@@ -156,8 +166,6 @@ class Home extends Component {
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderSider()
-      case apiStatusConstants.failure:
-        return this.renderFailureViewButton()
       case apiStatusConstants.inProgress:
         return this.renderLoadingViewCau()
       default:
@@ -214,8 +222,7 @@ class Home extends Component {
         productsList: [...restData],
         apiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 400) {
+    } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
@@ -236,6 +243,49 @@ class Home extends Component {
     this.renderProducts()
   }
 
+  /* <div>
+          <Header />
+        </div>
+        <div className="sli">{this.renderCaurData()}</div> */
+
+  renderHeaderData = () => {
+    const {
+      productsList,
+      activePage,
+      selectedSortByValue,
+      searchInput,
+    } = this.state
+
+    return (
+      <div>
+        <ProductsHeader
+          selectedSortByValue={selectedSortByValue}
+          sortByOptions={sortByOptions}
+          changeSortby={this.changeSortby}
+        />
+
+        <div className="input-search">
+          <input
+            value={searchInput}
+            onChange={this.onChangeSearch}
+            type="search"
+            className="input"
+            placeholder="search"
+          />
+          <div className="search-icon-container">
+            <button
+              onClick={this.onSearch}
+              testid="searchButton"
+              className="search-button"
+            >
+              <BsSearch className="search-icon" />
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   renderHomeData = () => {
     const {
       productsList,
@@ -243,93 +293,78 @@ class Home extends Component {
       selectedSortByValue,
       searchInput,
     } = this.state
-    return (
+    const length = productsList.length > 0
+
+    return length ? (
       <div>
         <div>
-          <Header />
-        </div>
-        <div className="sli">{this.renderCaurData()}</div>
-
-        <div>
-          <ProductsHeader
-            selectedSortByValue={selectedSortByValue}
-            sortByOptions={sortByOptions}
-            changeSortby={this.changeSortby}
-          />
-
-          <div className="input-search">
-            <input
-              value={searchInput}
-              onChange={this.onChangeSearch}
-              type="search"
-              className="input"
-              placeholder="search"
-            />
-            <div className="search-icon-container">
-              <button
-                onClick={this.onSearch}
-                testid="searchButton"
-                className="search-button"
-              >
-                <BsSearch className="search-icon" />
-              </button>
-            </div>
-          </div>
-
           <ul className="ul-list">
             {productsList.map(each => (
               <Items eachDetails={each} key={each.id} />
             ))}
           </ul>
         </div>
+      </div>
+    ) : (
+      <h1>No Resturant Found on That Name</h1>
+    )
+  }
 
-        <div className="buttons">
-          <button
-            testid="pagination-left-button"
-            onClick={this.onDecrement}
-            className="buttonClick"
-          >
-            {' '}
-            <BsChevronLeft />{' '}
-          </button>
-          <div className="count">
-            <p>
-              <span testid="active-page-number">{activePage}</span> of 4
-            </p>
-          </div>
-          <button
-            testid="pagination-right-button"
-            onClick={this.OnIncrement}
-            className="buttonClick"
-          >
-            {' '}
-            <BsChevronRight />{' '}
-          </button>
+  renderButtonData = () => {
+    const {
+      productsList,
+      activePage,
+      selectedSortByValue,
+      searchInput,
+    } = this.state
+
+    return (
+      <div className="buttons">
+        <button
+          testid="pagination-left-button"
+          onClick={this.onDecrement}
+          className="buttonClick"
+        >
+          {' '}
+          <BsChevronLeft />{' '}
+        </button>
+        <div className="count">
+          <p>
+            <span testid="active-page-number">{activePage}</span> of 4
+          </p>
         </div>
-        <div>
-          <Footer />
-        </div>
+        <button
+          testid="pagination-right-button"
+          onClick={this.OnIncrement}
+          className="buttonClick"
+        >
+          {' '}
+          <BsChevronRight />{' '}
+        </button>
       </div>
     )
   }
 
-  renderFailureView = () => (
-    <div className="products-error-view-container">
-      <img
-        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
-        alt="failure view"
-        className="failure"
-      />
-      <h1 className="failure-text">Oops! Something Went Wrong</h1>
-      <p className="failure-description">
-        We cannot seem to find the page you are looking for
-      </p>
+  renderFailureView = () => {
+    let k
+    return (
+      <div className="products-error-view-container">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+          alt="failure view"
+          className="failure"
+        />
+        <h1 className="failure-text">Oops! Something Went Wrong</h1>
+        <p className="failure-description">
+          We cannot seem to find the page you are looking for
+        </p>
 
-      <Link to="/jobs" className="link">
-        <button className="nav-button">Retry</button>
-      </Link>
-    </div>
-  )
+        <Link to="/" className="link">
+          <button className="nav-button">Retry</button>
+        </Link>
+      </div>
+    )
+  }
 
   renderFailureViewButton = () => (
     <div>
@@ -352,7 +387,7 @@ class Home extends Component {
       case apiStatusConstants.success:
         return this.renderHomeData()
       case apiStatusConstants.failure:
-        return this.renderFailureViewButton()
+        return this.renderFailureView()
       case apiStatusConstants.inProgress:
         return this.renderLoadingView()
       default:
@@ -368,7 +403,20 @@ class Home extends Component {
     const {productsList, activePage, selectedSortByValue} = this.state
     console.log(productsList)
 
-    return <div testid="restaurant-item">{this.renderAllrestData()}</div>
+    return (
+      <>
+        <div>
+          <Header />
+        </div>
+        <div>{this.renderCaurData()}</div>
+        <div>{this.renderHeaderData()}</div>
+        <div>{this.renderAllrestData()}</div>
+        <div>{this.renderButtonData()}</div>
+        <div>
+          <Footer />
+        </div>
+      </>
+    )
   }
 }
 

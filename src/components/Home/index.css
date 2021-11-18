@@ -1,8 +1,9 @@
 .slick-slide img {
   margin: auto;
 }
-.container {
+.contain {
   padding: 40px;
+  margin-top: 100px;
 }
 .imgC {
   width: 100%;

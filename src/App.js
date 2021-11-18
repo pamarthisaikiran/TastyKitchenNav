@@ -1,10 +1,10 @@
 import {Route, Switch, Redirect} from 'react-router-dom'
 
-import LoginForm from './components/LoginPage'
+import LoginForm from './components/Login'
 import Home from './components/Home'
 
 import ProtectedRoute from './components/ProtectedRoute'
-import SelectedRestarent from './components/SelectedRestarent'
+import SelectedRestarent from './components/RestaurantDetails'
 import Cart from './components/Cart'
 import NotFound from './components/NotFound'
 import './App.css'
