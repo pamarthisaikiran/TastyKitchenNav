@@ -18,6 +18,7 @@ const ProductsHeader = props => {
         </p>
         <div className="sorted">
           <BsFilterRight className="sort-by-icon" />
+          <p>Sort By</p>
           <select
             className="sort-by-select"
             value={selectedSortByValue}

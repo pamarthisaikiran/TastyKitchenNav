@@ -86,12 +86,13 @@ class Cart extends Component {
       <div>
         <Header />
         <div testid="cartItem" className="cart-card">
+          <p>{parsedDataState.length} food item added to cart</p>
           <div className="ul-all">
             <ul>
               <li className="list">
                 <p className="item">Item</p>
                 <p className="quan"> Quantity</p>
-                <p className="price">Price</p>
+                <p className="price">cost of the food item</p>
               </li>
               {parsedDataState.map(each => (
                 <CartData
@@ -107,7 +108,9 @@ class Cart extends Component {
             <div className="gtotal">
               <h1 className="order">Order Total:</h1>
               <div>
-                <p className="total">₹ {gTotal}.00</p>
+                <p testid="total-price" className="total">
+                  ₹ {gTotal}.00
+                </p>
                 <button onClick={this.onPlaceOrder} className="porder">
                   Place Order
                 </button>

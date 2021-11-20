@@ -72,11 +72,10 @@ class Header extends Component {
                 Cart{' '}
               </button>
             </Link>
-            <Link>
-              <button onClick={this.onClickLogout} className="navButton">
-                Logout
-              </button>
-            </Link>
+
+            <button onClick={this.onClickLogout} className="navButton">
+              Logout
+            </button>
           </div>
         </nav>
       </>

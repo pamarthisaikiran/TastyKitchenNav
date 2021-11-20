@@ -18,7 +18,7 @@ const Items = props => {
   } = eachDetails
 
   return (
-    <Link to={`/rest/${id}`} className="link-item">
+    <Link to={`/restaurant/${id}`} className="link-item">
       <li testid="restaurant-item" className="list">
         <div>
           <img alt="restaurant" className="imgUrl" src={imageUrl} />

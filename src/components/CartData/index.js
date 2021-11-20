@@ -90,7 +90,9 @@ class CartData extends Component {
           >
             -
           </button>
-          <div>{countE}</div>
+          <div>
+            <p testid="item-quantity">{countE}</p>
+          </div>
           <button
             testid="increment-quantity"
             onClick={this.onIncrement}

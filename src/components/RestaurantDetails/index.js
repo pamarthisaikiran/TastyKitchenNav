@@ -81,8 +81,7 @@ class SelectedRestarent extends Component {
         FItems: FoodItems,
         apiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 400) {
+    } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
@@ -133,8 +132,9 @@ class SelectedRestarent extends Component {
 
   renderDishData = () => {
     const {RData, FItems} = this.state
+    const length = FItems.length > 0
 
-    return (
+    return length ? (
       <div>
         <Header />
         <div>{this.renderRData()}</div>
@@ -149,6 +149,11 @@ class SelectedRestarent extends Component {
         <div>
           <Footer />
         </div>
+      </div>
+    ) : (
+      <div>
+        <h1>Please Try Again</h1>
+        <button>Retry</button>
       </div>
     )
   }

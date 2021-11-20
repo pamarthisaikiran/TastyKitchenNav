@@ -26,7 +26,11 @@ const App = () => (
   <Switch>
     <Route exact path="/login" component={LoginForm} />
     <ProtectedRoute exact path="/" component={Home} />
-    <ProtectedRoute exact path="/rest/:id" component={SelectedRestarent} />
+    <ProtectedRoute
+      exact
+      path="/restaurant/:id"
+      component={SelectedRestarent}
+    />
     <ProtectedRoute exact path="/cart" component={Cart} />
     <Route path="/bad-path" component={NotFound} />
     <Redirect to="bad-path" />
