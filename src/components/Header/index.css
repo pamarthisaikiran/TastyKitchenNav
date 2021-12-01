@@ -51,11 +51,16 @@
 }
 .bgg {
   background: #f8fafc;
-  height: 100px;
+
+  width: 100%;
+  padding: 18px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  background-size: cover;
 }
-.dwn {
-  background: #f8fafc;
-}
+
 .cont {
   display: flex;
   justify-content: space-between;
@@ -74,4 +79,84 @@
 .bttn {
   background-color: transparent;
   border-width: 0px;
+  position: relative;
+}
+
+.header-ul {
+  list-style-type: none;
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+}
+.hum {
+}
+@media (min-width: 577px) {
+  .hum {
+    display: none;
+  }
+}
+@media (max-width: 576px) {
+  .header-ul {
+    display: none;
+    list-style-type: none;
+  }
+}
+.header-li {
+  display: flex;
+  position: relative;
+}
+.header-nav-div {
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.logo-li {
+  position: relative;
+}
+.header-hum {
+}
+@media (min-width: 577px) {
+  .header-hum {
+    display: none;
+    list-style-type: none;
+  }
+}
+.navButtonHum {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+
+  background: #f7931e;
+  border-radius: 2px;
+  border-width: 0px;
+}
+.navhomeHum {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: transparent;
+  color: #f7931e;
+  border-width: 0px;
+  margin-bottom: 10px;
+}
+.navCartHum {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: #f7931e;
+  background-color: transparent;
+  border-width: 0px;
+  margin-bottom: 10px;
+}
+.hrrr {
+  color: transparent;
+}
+.link-color {
+  text-decoration: none;
 }

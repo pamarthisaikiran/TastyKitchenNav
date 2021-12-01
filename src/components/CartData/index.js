@@ -79,8 +79,10 @@ class CartData extends Component {
     const {imageUrl, id, count, cost, name, qprice} = eachDetails
     return (
       <li className="cartList">
-        <img className="imgUrl imgurlC" src={imageUrl} />
-        <h1 className="box">{name}</h1>
+        <div className="list-div">
+          <img className="imgUrls imgurlC" src={imageUrl} />
+          <h1 className="box">{name}</h1>
+        </div>
         <div className="cartBut">
           <button
             testid="decrement-quantity"

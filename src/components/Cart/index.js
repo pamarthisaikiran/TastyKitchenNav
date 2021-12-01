@@ -86,13 +86,17 @@ class Cart extends Component {
       <div>
         <Header />
         <div testid="cartItem" className="cart-card">
-          <p>{parsedDataState.length} food item added to cart</p>
+          <p>
+            My Cart(<span className="span-cart">{parsedDataState.length}</span>)
+          </p>
           <div className="ul-all">
-            <ul>
-              <li className="list">
-                <p className="item">Item</p>
-                <p className="quan"> Quantity</p>
-                <p className="price">cost of the food item</p>
+            <ul className="ul-top">
+              <li className="list-top-div">
+                <div className="listC">
+                  <p className="item">Item</p>
+                  <p className="quan"> Quantity</p>
+                  <p className="price">Price</p>
+                </div>
               </li>
               {parsedDataState.map(each => (
                 <CartData

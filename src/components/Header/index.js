@@ -13,6 +13,7 @@ class Header extends Component {
     clrCart: false,
     textH: 'navhome',
     textC: 'navCart',
+    isTrue: false,
   }
 
   onClickLogout = () => {
@@ -44,47 +45,109 @@ class Header extends Component {
       this.renderNav,
     )
   } */
+  onClickHum = () => {
+    const {isTrue} = this.state
+    this.setState(preState => ({
+      isTrue: !preState.isTrue,
+    }))
+  }
+
+  renderBar = () => {
+    const {isTrue} = this.state
+
+    return isTrue ? (
+      <div>
+        <ul className="header-hum">
+          <Link to="/">
+            {' '}
+            <li className="logo-li">
+              <button onClick={this.color} className="navhomeHum">
+                Home
+              </button>
+            </li>
+          </Link>
+
+          <Link to="/cart">
+            <li className="logo-li">
+              <button onClick={this.colorCart} className="navCartHum">
+                Cart{' '}
+              </button>
+            </li>
+          </Link>
+
+          <li>
+            {' '}
+            <button onClick={this.onClickLogout} className="navButtonHum">
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    ) : (
+      <div>
+        <hr className="hrrr" />
+      </div>
+    )
+  }
 
   renderNav = () => {
-    const {textH, textC, clr} = this.state
+    const {textH, isTrue, textC, clr} = this.state
     const Navcolor = clr ? `navhome` : `colorNav`
     return (
-      <>
-        <nav className="bgg fixed-top" bg="light-blue-gray" expand="lg">
-          <div className="navCon">
-            <Link to="/">
+      <nav className="bgg">
+        <div className="header-nav-div">
+          <Link to="/" className="link-color">
+            <div className="header-li">
               <img
                 alt="website logo"
                 src="https://res.cloudinary.com/ddbhluguf/image/upload/v1634469329/Vector_10x_ay1xq6.png"
               />
-            </Link>
-            <h1 className="navHead">Tasty Kitchen</h1>
+
+              <h1 className="navHead ">Tasty Kitchen</h1>
+            </div>
+          </Link>
+
+          <div>
+            <img
+              onClick={this.onClickHum}
+              className="hum"
+              src="https://res.cloudinary.com/ddbhluguf/image/upload/v1638363597/icons8-menu-24_fjxoqv.png"
+            />
           </div>
 
-          <div className=" flex ">
+          <ul className="header-ul">
             <Link to="/">
-              <button onClick={this.color} className="navhome">
-                Home
-              </button>
-            </Link>
-            <Link to="/cart">
-              <button onClick={this.colorCart} className="navCart">
-                Cart{' '}
-              </button>
+              {' '}
+              <li className="logo-li">
+                <button onClick={this.color} className="navhome">
+                  Home
+                </button>
+              </li>
             </Link>
 
-            <button onClick={this.onClickLogout} className="navButton">
-              Logout
-            </button>
-          </div>
-        </nav>
-      </>
+            <Link to="/cart">
+              <li className="logo-li">
+                <button onClick={this.colorCart} className="navCart">
+                  Cart{' '}
+                </button>
+              </li>
+            </Link>
+
+            <li>
+              {' '}
+              <button onClick={this.onClickLogout} className="navButton">
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div>{this.renderBar()}</div>
+      </nav>
     )
   }
 
   render() {
-    const {textH, textC, clr} = this.state
-    const Navcolor = clr ? `navhome` : `colorNav`
+    const {textH} = this.state
     return <>{this.renderNav()}</>
   }
 }

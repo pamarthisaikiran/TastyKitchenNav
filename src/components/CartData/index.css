@@ -4,20 +4,21 @@
   align-items: center;
 
   margin-bottom: 20px;
+  justify-content: space-between;
 }
 .cartBut {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 50px;
+  margin-right: 2.5%;
 }
 .box {
-  margin-right: 100px;
+  margin-right: 5%;
   width: 100px;
   font-family: DM Sans;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 24px;
   /* identical to box height, or 120% */
 
@@ -27,6 +28,7 @@
 }
 .imgurlC {
   margin-right: 5px;
+  /*width: 30%;*/
 }
 .costC {
   margin-top: 10px;
@@ -38,4 +40,36 @@
   /* identical to box height, or 150% */
 
   color: #ffa412;
+}
+.list-div {
+  display: flex;
+}
+.imgUrls {
+  width: 150px;
+  height: 100px;
+  border-radius: 8px;
+}
+@media (max-width: 576px) {
+  .box {
+    margin-right: 5%;
+    width: 100px;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 120% */
+
+    letter-spacing: 0.2px;
+
+    color: #183b56;
+  }
+  .imgurlC {
+    margin-right: 5px;
+    /*width: 30%;*/
+  }
+  .imgUrls {
+    width: 100px;
+    height: 100px;
+  }
 }
